@@ -141,16 +141,18 @@ public class FXMLDocumentController implements Initializable {
         l.addAll(Arrays.asList(input.split("\n")));
         return l;
     }
-    
+
     private void writeFile(String output, String filepath) {
         try {
             FileWriter fstream = new FileWriter(filepath);
             BufferedWriter out = new BufferedWriter(fstream);
             out.write(output);
             out.close();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
     }
-    private String readFile(String filepath){
+
+    private String readFile(String filepath) {
         String input = "";
         try {
             Scanner in;
