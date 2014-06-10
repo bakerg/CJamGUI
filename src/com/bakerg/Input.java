@@ -47,9 +47,12 @@ public class Input extends InputStream {
         int length = bytes.length;
         if (currentPos < length) {
             returnVal = bytes[currentPos];
+            currentPos++;
+        } else if (currentPos <= length) {
+            currentPos++;
+        } else {
+            currentPos = 0;
         }
-        currentPos++;
         return returnVal;
     }
-
 }
