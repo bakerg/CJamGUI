@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bakerg.FXMLDocumentController">
+<left><AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+<children><ListView fx:id="list" layoutX="-14.0" layoutY="46.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+</children></AnchorPane>
+</left>
+<center><VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" BorderPane.alignment="CENTER">
+<children><Label text="Code" /><TextArea fx:id="codeTextArea" prefHeight="200.0" prefWidth="200.0" promptText="CJam Code" /><Label text="Input" /><TextArea fx:id="inputTextArea" prefHeight="200.0" prefWidth="200.0" promptText="Program Input" />
+<HBox alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><Label text="Output" /><Button mnemonicParsing="false" onMouseClicked="#runProgram" text="Run" />
+</children>
+<padding>
+<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+</padding>
+</HBox><TextArea fx:id="outputTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Program Output" />
+</children>
+<padding>
+<Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+</padding>
+<BorderPane.margin>
+<Insets />
+</BorderPane.margin></VBox>
+</center>
+<top><MenuBar BorderPane.alignment="CENTER" xmlns:fx="http://javafx.com/fxml">
+<menus><Menu mnemonicParsing="false" text="File">
+  <items>
+    <MenuItem mnemonicParsing="false" onAction="#openFile" text="Open" /><MenuItem mnemonicParsing="false" onAction="#saveFile" text="Save" />
+  </items>
+</Menu><Menu mnemonicParsing="false" text="Help">
+  <items>
+    <MenuItem mnemonicParsing="false" onAction="#showAbout" text="About" /><MenuItem mnemonicParsing="false" onAction="#showCJamWiki" text="CJam Wiki" />
+  </items>
+</Menu>
+</menus>
+</MenuBar>
+</top></BorderPane>
