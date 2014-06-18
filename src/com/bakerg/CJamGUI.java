@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.bakerg;
 
 import javafx.application.Application;
@@ -35,8 +34,10 @@ import javafx.stage.Stage;
  * @author Geoff
  */
 public class CJamGUI extends Application {
-    
+
     static Stage stage;
+    static Stage updateStage;
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -45,10 +46,24 @@ public class CJamGUI extends Application {
         stage.setTitle("CJam GUI");
         stage.setScene(scene);
         stage.show();
+        if (Updater.checkForUpdate()) {
+            Parent updatePane = FXMLLoader.load(getClass().getResource("UpdatePane.fxml"));
+            updateStage = new Stage();
+            updateStage.setTitle("CJam GUI Updater");
+            updateStage.setScene(new Scene(updatePane));
+            updateStage.setResizable(false);
+            updateStage.toFront();
+            updateStage.show();
+
+        }
     }
-    
-    public static Stage getStage(){
+
+    public static Stage getStage() {
         return stage;
+    }
+
+    public static Stage getUpdateStage() {
+        return updateStage;
     }
 
     /**
@@ -62,5 +77,5 @@ public class CJamGUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

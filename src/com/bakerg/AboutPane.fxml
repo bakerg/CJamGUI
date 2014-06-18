@@ -14,7 +14,7 @@
 <children><Label text="CJam GUI">
 <font>
 <Font size="24.0" />
-</font></Label><Label text="v1.0 - MIT License" textFill="#000000d1">
+</font></Label><Label text="v1.1.0 - MIT License" textFill="#000000d1">
 <font>
 <Font size="12.0" />
 </font></Label><Label text="Created by Geoff Baker">

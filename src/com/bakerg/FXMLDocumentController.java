@@ -70,6 +70,7 @@ public class FXMLDocumentController implements Initializable {
     private TextArea outputTextArea;
     private PrintStream ps;
     public static Stage stage;
+    private CJamThread runningThread = new CJamThread(null);
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -83,8 +84,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void runProgram(MouseEvent me) {
         outputTextArea.clear();
-        CJamThread cj = new CJamThread(codeTextArea.getText());
-        cj.start();
+        if (!runningThread.isAlive()) {
+            runningThread = new CJamThread(codeTextArea.getText());
+            runningThread.start();
+        } else {
+            System.err.println("CJam Thread still running!");
+        }
     }
 
     @FXML

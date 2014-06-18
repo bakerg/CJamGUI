@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 Geoff Baker.
+ * Copyright 2014 Geoff Baker <me at bakerg.com>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,26 +23,38 @@
  */
 package com.bakerg;
 
-import java.io.StringReader;
-import net.aditsu.cjam.Block;
-import net.aditsu.cjam.CJam;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 /**
+ * FXML Controller class
  *
- * @author Geoff
+ * @author Geoff Baker <me at bakerg.com>
  */
-public class CJamThread extends Thread {
+public class UpdatePaneController implements Initializable {
 
-    private final String code;
+    @FXML
+    private Label versionLabel;
 
-    public CJamThread(String code) {
-        this.code = code;
+    @FXML
+    protected void yesButtonClicked(MouseEvent me) {
+        CJamGUI.getUpdateStage().close();
+        Updater.installUpdate();
+    }
+
+    @FXML
+    protected void noButtonClicked(MouseEvent me) {
+        CJamGUI.getUpdateStage().close();
     }
 
     @Override
-    public void run() {
-        CJam x = new CJam();
-        Block b = Block.parse(new StringReader(code), false);
-        x.runCode(b);
+    public void initialize(URL url, ResourceBundle rb) {
+        String[] versions = Updater.getVersions();
+        versionLabel.setText("Local version: " + versions[0] + " Remote version: " + versions[1]);
     }
+
 }
