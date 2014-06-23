@@ -46,6 +46,7 @@ public class CJamGUI extends Application {
         stage.setTitle("CJam GUI");
         stage.setScene(scene);
         stage.show();
+        Updater.readVersions();
         if (Updater.checkForUpdate()) {
             Parent updatePane = FXMLLoader.load(getClass().getResource("UpdatePane.fxml"));
             updateStage = new Stage();

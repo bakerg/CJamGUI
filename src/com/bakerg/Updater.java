@@ -30,6 +30,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +41,8 @@ import java.util.logging.Logger;
  */
 public class Updater {
 
-    final static String version = "1.1.0";
+    static String version;
+    static String cjamVersion;
     static String latestVersion;
 
     public static boolean checkForUpdate() {
@@ -76,7 +78,8 @@ public class Updater {
                 fos.write(byteBuffer);
                 bytesWritten += bytesRead;
             }
-            System.out.println("Latest CJam GUI successfully downloaded to " + programPath.getPath().substring(0, programPath.getPath().length() - 4) + "latest.jar Size:" + bytesWritten + " bytes");
+            System.out.println("Latest CJam GUI successfully downloaded to " + programPath.getPath().substring(0, programPath.getPath().length() - 4) + "latest.jar \nSize:" + bytesWritten + " bytes");
+            System.out.println("Replace the current CJamGUI jar with CJamGUIlatest to install.");
         } catch (MalformedURLException ex) {
             Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -93,5 +96,22 @@ public class Updater {
 
     public static String[] getVersions() {
         return new String[]{version, latestVersion};
+    }
+
+    public static void readVersions() {
+        Scanner in;
+        ArrayList<String> input = new ArrayList();
+        in = new Scanner(CJamGUI.class.getResourceAsStream("version.txt"));
+        while (in.hasNext()) {
+            input.add(in.nextLine());
+        }
+        in.close();
+        for (String s : input) {
+            if (s.startsWith("version:")) {
+                version = s.substring(s.indexOf(':') + 1);
+            } else if (s.startsWith("cjamversion:")) {
+                cjamVersion = s.substring(s.indexOf(':') + 1);
+            }
+        }
     }
 }

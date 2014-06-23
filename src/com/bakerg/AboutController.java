@@ -21,19 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.bakerg;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  *
  * @author Geoff
  */
-public class AboutController {
+public class AboutController implements Initializable {
+
     @FXML
-    private void closeAbout(ActionEvent ae){
+    private Label cjamVersionLabel;
+
+    @FXML
+    private Label versionLabel;
+
+    @FXML
+    private void closeAbout(ActionEvent ae) {
         FXMLDocumentController.stage.close();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        versionLabel.setText("v" + Updater.version + " - MIT License");
+        cjamVersionLabel.setText("v" + Updater.cjamVersion + " - MIT License");
     }
 }
