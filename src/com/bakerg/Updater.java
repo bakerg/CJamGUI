@@ -47,18 +47,18 @@ public class Updater {
 
     public static boolean checkForUpdate() {
         boolean updateAvailable = false;
-        try {
-            URL latestVersionFile = new URL("http://bakerg.com/cjam/latest/version.txt");
-            Scanner in = new Scanner(latestVersionFile.openStream());
-            latestVersion = in.next("[0-9]\\.[0-9]\\.[0-9]");
-            if (!latestVersion.equals(version)) {
-                updateAvailable = true;
-            }
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            URL latestVersionFile = new URL("http://www.bakerg.com/cjam/latest/version.txt");
+//            Scanner in = new Scanner(latestVersionFile.openStream());
+//            latestVersion = in.next("[0-9]\\.[0-9]\\.[0-9]");
+//            if (!latestVersion.equals(version)) {
+//                updateAvailable = true;
+//            }
+//        } catch (MalformedURLException ex) {
+//            Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         return updateAvailable;
     }
 
@@ -67,7 +67,7 @@ public class Updater {
         BufferedInputStream bis = null;
         try {
             URL programPath = Updater.class.getProtectionDomain().getCodeSource().getLocation();
-            URL latestJar = new URL("http://bakerg.com/cjam/latest/CJamGUI.jar");
+            URL latestJar = new URL("http://www.bakerg.com/cjam/latest/CJamGUI.jar");
             URLConnection connection = latestJar.openConnection();
             InputStream input = connection.getInputStream();
             bis = new BufferedInputStream(input);
